@@ -1,2 +1,2 @@
 # Azure
-Azure cloud infra
+Put secrets in your terraform.tfvars file
