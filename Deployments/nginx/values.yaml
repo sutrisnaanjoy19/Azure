@@ -1,0 +1,52 @@
+controller:
+  allowSnippetAnnotations: true
+  containerPort:
+    http: 80
+    https: 443
+
+  config:
+    proxy-request-buffering: "off"
+    proxy-next-upstream: "off"
+    disable-access-log: true
+
+  ingressClassResource:
+    name: misc-nginx
+    enabled: true
+    default: false
+    controllerValue: "k8s.io/misc-nginx-ingress-nginx"
+
+  ingressClass: misc-nginx
+
+  kind: Deployment
+
+  updateStrategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+
+  nodeSelector:
+    kubernetes.io/os: linux
+    size: B2s
+
+  replicaCount: 1
+
+  service:
+    enabled: true
+
+    annotations:
+      kubernetes.io/azure-load-balancer-internal: "true"
+      kubernetes.io/azure-load-balancer-resource-group: "Azure-test-eastus"
+
+    enableHttps: false
+
+    externalTrafficPolicy: Local
+
+    healthCheckNodePort: 31000
+
+  # metrics:
+  #   enabled: true
+
+  #   serviceMonitor:
+  #     enabled: true
+  #     namespace: monitoring

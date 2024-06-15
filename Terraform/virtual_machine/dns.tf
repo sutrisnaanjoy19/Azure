@@ -6,3 +6,4 @@ resource "cloudflare_record" "sre" {
   proxied = false
 }
 
+

@@ -8,13 +8,10 @@ variable "resource_group_name" {
 }
 variable "location" {
   type    = string
-  default = "East US"
+  default = "EastUS"
 }
 variable "admin_user" {
   description = "username"
-}
-variable "password" {
-  description = "password"
 }
 
 # Cloudflare

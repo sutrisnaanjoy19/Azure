@@ -25,7 +25,7 @@ resource "azurerm_linux_virtual_machine" "testing" {
   name                            = "${var.resource_prefix}-vm"
   resource_group_name             = var.resource_group_name
   location                        = var.location
-  size                            = "Standard_F1"
+  size                            = "Standard_B1s"
   admin_username                  = var.admin_user
   disable_password_authentication = true
   admin_ssh_key {
@@ -49,13 +49,6 @@ resource "azurerm_linux_virtual_machine" "testing" {
   }
 }
 
-# resource "azurerm_automanage_configuration" "testing" {
-#   name                = "${var.resource_prefix}-cnf"
-#   resource_group_name = var.resource_group_name
-#   location            = var.location
-# }
 
-# resource "azurerm_virtual_machine_automanage_configuration_assignment" "testing" {
-#   virtual_machine_id = azurerm_linux_virtual_machine.testing.id
-#   configuration_id   = azurerm_automanage_configuration.testing.id
-# }
+
+
