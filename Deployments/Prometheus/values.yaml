@@ -1,0 +1,42 @@
+alertmanager:
+  replicas: 1
+  nodeSelector:
+    size: B2s
+
+grafana:
+  replicas: 1
+  namespaceOverride: "monitoring"
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      kubernetes.io/ingress.class: "misc-nginx"
+    hosts:
+    - azure.lordvader.me
+    paths:
+    - /grafana
+    pathType: ImplementationSpecific
+
+  nodeSelector:
+    size: B2s
+
+prometheusOperator:
+  nodeSelector:
+    size: B2s
+
+prometheus:
+  replicas: 1
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      kubernetes.io/ingress.class: "misc-nginx"
+    hosts:
+    - azure.lordvader.me
+    paths:
+    - /monitoring
+    pathType: ImplementationSpecific
+  prometheusSpec:
+    nodeSelector:
+      size: B2s
+#don't create service loadbalancer type as i am using free trial account it will not allow me to use more than 3 public ips and service of type loadbalancer will need an public ip
